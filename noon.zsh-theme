@@ -22,7 +22,7 @@ PROMPT='\
 ${time} \
 ${user}\
 ${pwd}\
-%{$fg[cyan]%}$(git_prompt_info)%{$reset_color%}\
+%{$fg[blue]%}$(git_prompt_info)%{$reset_color%}\
 %{$fg[yellow]%} ♫ %{$reset_color%}'
 
 RPROMPT='${return_code}'
