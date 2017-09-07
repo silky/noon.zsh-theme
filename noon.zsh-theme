@@ -17,8 +17,26 @@ return_code=$return_code_disabled
 # Default username
 user="%(!.%{$fg[white]%}.%{$fg[white]%})%n ∈ %{$reset_color%}"
 
+# Aws profile
+aws_profle=""
+aws-export-profile () {
+    if [[ "$1" = '' ]]
+    then
+        echo "Usage: aws-export-profile [profile-name]"
+    else
+        eval $(
+            cat ~/.aws/credentials \
+            | sed  -n "/$1/,/\[/ p" \
+            | grep = \
+            | sed 's/ //g; s/^/export /'
+        )
+        aws_profile="%{$fg[blue]%}(aws:$1)%{$reset_color%} "
+    fi
+}
+
 # Prompts
 PROMPT='\
+${aws_profile}\
 ${time} \
 ${user}\
 ${pwd}\
