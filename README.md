@@ -13,7 +13,7 @@ zgen load silky/noon.zsh-theme noon.zsh-theme
 - Cool music symbol: ♫
 
 - Super-cool function to export aws-profile environment variables
-  courtesy of ([sordina](https://github.com/sordina)):
+  (courtesy of [sordina](https://github.com/sordina)):
 
 ```
 aws-export-profile <profile-name>
