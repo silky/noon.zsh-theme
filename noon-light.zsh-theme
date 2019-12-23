@@ -2,12 +2,12 @@ ZSH_THEME_GIT_PROMPT_PREFIX=" ("
 ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 
 # Compacted $PWD
-pwd="%{%F{202}%}%c%{$reset_color%}"
+# For some reason this number is correlated to the auto-complete colour
+# problem.
+pwd="%{%F{14}%}%c%{$reset_color%}"
 
 # The time in a sensible format
-time_enabled="%(?.%{$fg[cyan]%}.%{$fg[red]%}⚡ )%D{%I:%M %p}%{$reset_color%}"
-time_disabled="%{$fg[cyan]%}%D{%I:%M %p}%{$reset_color%}"
-time=$time_enabled
+time="%{$fg[cyan]%}%D{%I:%M %p}%{$reset_color%}"
 
 # Elaborate exitcode on the right when >0
 return_code_enabled="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
@@ -41,7 +41,7 @@ ${time} \
 ${user}\
 ${pwd}\
 %{%F{21}%}$(git_prompt_info)%{$reset_color%}\
-%{$fg[yellow]%} ♫ %{$reset_color%}'
+%{$fg[red]%} %{$reset_color%}'
 
 RPROMPT='${return_code}'
 
@@ -58,10 +58,10 @@ function accept-line-or-clear-warning () {
     maybe-sudo-color
 
 	if [[ -z $BUFFER ]]; then
-		time=$time_disabled
+		# time=$time_disabled
 		return_code=$return_code_disabled
 	else
-		time=$time_enabled
+		# time=$time_enabled
 		return_code=$return_code_enabled
 	fi
 	zle accept-line
