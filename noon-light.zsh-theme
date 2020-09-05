@@ -4,18 +4,20 @@ ZSH_THEME_GIT_PROMPT_SUFFIX=")"
 # Compacted $PWD
 # For some reason this number is correlated to the auto-complete colour
 # problem.
-pwd="%{%F{14}%}%c%{$reset_color%}"
+# pwd="%{%F{14}%}%c%{$reset_color%}"
+pwd="%{$fg[green]%}%c%{$reset_color%}"
 
 # The time in a sensible format
-time="%{$fg[cyan]%}%D{%I:%M %p}%{$reset_color%}"
+time="%{$fg[blue]%}%D{%I:%M %p}%{$reset_color%}"
 
 # Elaborate exitcode on the right when >0
 return_code_enabled="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-return_code_disabled="%{$fg[magenta]%}%D{%a %b %d}%{$reset_color%}"
+return_code_disabled="%{$fg[blue]%}%D{%a %b %d}%{$reset_color%}"
 return_code=$return_code_disabled
 
 # Default username
-user="%(!.%{%F{19}%}.%{%F{19}%})%n ∈ %{$reset_color%}"
+# user="%(!.%{%F{19}%}.%{%F{19}%})%n φ %{$reset_color%}"
+# user="%(!.%{$fg[cyan]%}%}.%{%F{19}%})%n φ %{$reset_color%}"
 
 # Aws profile
 aws_profle=""
@@ -40,7 +42,7 @@ ${aws_profile}\
 ${time} \
 ${user}\
 ${pwd}\
-%{%F{21}%}$(git_prompt_info)%{$reset_color%}\
+%{$fg[yellow]%}$(git_prompt_info)%{$reset_color%}\
 %{$fg[red]%} %{$reset_color%}'
 
 RPROMPT='${return_code}'
@@ -48,9 +50,9 @@ RPROMPT='${return_code}'
 # Magic to get rid of the return code once, and colour things if we can sudo.
 function maybe-sudo-color () {
     if [ "$(sudo -n echo 1 2>/dev/null)" = "1" ]; then
-        user="%(!.%{%F{19}%}.%{$fg[red]%})%n ∈ %{$reset_color%}"
+        user="%(!.%{$fg[cyan]%}.%{$fg[red]%})%n φ %{$reset_color%}"
     else
-        user="%(!.%{%F{19}%}.%{%F{19}%})%n ∈ %{$reset_color%}"
+        user="%(!.%{$fg[cyan]%}.%{$fg[cyan]%})%n φ %{$reset_color%}"
     fi
 }
 
@@ -69,7 +71,6 @@ function accept-line-or-clear-warning () {
 
 zle -N accept-line-or-clear-warning
 bindkey '^M' accept-line-or-clear-warning
-
 
 export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export LS_COLOURS="di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
