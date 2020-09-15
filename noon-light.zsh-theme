@@ -16,8 +16,7 @@ return_code_disabled="%{$fg[blue]%}%D{%a %b %d}%{$reset_color%}"
 return_code=$return_code_disabled
 
 # Default username
-# user="%(!.%{%F{19}%}.%{%F{19}%})%n φ %{$reset_color%}"
-# user="%(!.%{$fg[cyan]%}%}.%{%F{19}%})%n φ %{$reset_color%}"
+user="%(!.%{$fg[cyan]%}.%{$fg[cyan]%})%n φ %{$reset_color%}"
 
 # Aws profile
 aws_profle=""
@@ -72,5 +71,11 @@ function accept-line-or-clear-warning () {
 zle -N accept-line-or-clear-warning
 bindkey '^M' accept-line-or-clear-warning
 
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
-export LS_COLOURS="di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+# Format is:
+#   <foreground><background>
+#
+# where the colours are these:
+#  - https://www.norbauer.com/rails-consulting/notes/ls-colors-and-terminal-app.html
+#
+# export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
